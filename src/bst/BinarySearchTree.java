@@ -2,6 +2,8 @@ package bst;
 
 import java.util.Stack;
 
+import org.w3c.dom.Node;
+
 public class BinarySearchTree<T extends Comparable<T>> {
 	
 	private static class BSTNode<T extends Comparable<T>>{
@@ -146,12 +148,15 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	public void inOrder() {
 		inOrderRecurse(root); 
 		 System.out.println("InOrder test commit");
-		
+		 
+		 
 	}
 	
 	public void inOrderRecurse(BSTNode<T> node) {
-		if (node == null) {
-			return; } 
+		if (node == null) 
+		{
+			return; 
+		} 
 		inOrderRecurse(node.leftChild); 
 		System.out.println(node.data); 
 		inOrderRecurse(node.rightChild);
@@ -160,7 +165,29 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	}
 	//Traverse the tree in an inorder fashion but using a stack
 	public void inOrderStack() {
+		
+		if(root == null)
+			return;
+		
 		Stack<BSTNode<T>> in = new Stack<BSTNode<T>>();
+		BSTNode<T> curr = root;
+		
+		while(!in.empty() || curr != null)
+		{
+			if(curr != null)
+			{
+				in.push(curr);
+				curr = curr.leftChild;
+			} else
+			{
+				curr = in.pop();
+				System.out.println(curr.data);
+				curr = curr.rightChild;
+			}
+		}
+		
+		
+		
 		
 		
 	}
